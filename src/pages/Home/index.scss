@@ -1,4 +1,31 @@
-.home__wrapper {
+.home {
     display: flex;
     height: 90vh;
+    width: 100vw;
+
+    &__wrapper {
+        width: 95vw;
+        &--banner {
+            background-color: blue;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        &--statistics {
+            display: flex;
+            width: 90%;
+            margin: 0 auto;
+            .home__chart {
+                background-color: green;
+                width: 80%;
+                height: 200px;
+            }
+            .home__statistics {
+                background-color: purple;
+                height: 200px;
+                width: 20%;
+            }
+        }
+    }
 }
