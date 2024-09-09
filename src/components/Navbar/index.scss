@@ -1,8 +1,7 @@
 nav {
     width: 100%;
     display: flex;
-    // justify-content: center;
-    background-color: blue;
+    background-color: $main-color;
     align-items: center;
     height: 75px;
     .nav__wrapper--img {
@@ -26,7 +25,7 @@ nav {
         justify-content: space-between;
         align-items: center;
         li {
-            text-align: left;
+            color: $white-color;
         }
     }
 }

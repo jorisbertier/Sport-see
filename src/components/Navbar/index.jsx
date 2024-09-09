@@ -5,7 +5,7 @@ function Navbar() {
     return(
         <nav>
             <div className='nav__wrapper--img'>
-                <img src={Logo}/>
+                <img src={Logo} alt='Logo du site'/>
             </div>
             <ul className='nav__wrapper--navlink'>
                 <li>Accueil</li>
