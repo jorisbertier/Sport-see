@@ -1,0 +1,32 @@
+nav {
+    width: 100%;
+    display: flex;
+    // justify-content: center;
+    background-color: blue;
+    align-items: center;
+    height: 75px;
+    .nav__wrapper--img {
+        width: 15%;
+        margin-left: 1%;
+        img {
+            width: 130px;
+            height: 50px;
+        }
+    }
+    .nav__wrapper--navlink {
+        width: 75%;
+        margin-right: 5%;
+    }
+
+    ul {
+        width: 100%;
+        // background-color: red;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        li {
+            text-align: left;
+        }
+    }
+}
