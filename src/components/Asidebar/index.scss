@@ -18,15 +18,14 @@ aside {
     }
     small {
         background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 130px;
         position: absolute;
-        height: 100%;
-        width: 100%;
-        margin: 0;
+        bottom: 23%;
+        left: -30px;
+        transform: rotate(-90deg) translateX(-50%);
         font-size: 10px;
         color: $white-color;
-        // transform: rotate(-90deg);
+        text-align: center;
     }
+
 }
