@@ -19,7 +19,7 @@ function Home() {
         .catch(err => console.log("Error fetch", err))
         
     },[])
-    console.log(user)
+    console.log(user?.userInfos)
 
 
     return (
@@ -27,7 +27,7 @@ function Home() {
             <Asidebar/>
             <div className="home__wrapper">
                 <div className="home__wrapper--banner">
-                    <h1>Bonjour <span>Thomas</span></h1>
+                    <h1>Bonjour <span>{user?.userInfos.firstName}</span></h1>
                     <p> Félicitation ! Vous avez explosé vos objectifs hier 👏 </p>
                     
                 </div>
