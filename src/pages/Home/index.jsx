@@ -1,5 +1,8 @@
 import Asidebar from "../../components/Asidebar"
-import Bodyweight from '../../assets/images/protein-icon.png';
+import proteins from '../../assets/images/protein-icon.png';
+import calories from '../../assets/images/calories-icon.png';
+import carbs from '../../assets/images/carbs-icon.png';
+import fat from '../../assets/images/fat-icon.png';
 import { useState, useEffect } from "react";
 
 function Home() {
@@ -16,7 +19,7 @@ function Home() {
         .catch(err => console.log("Error fetch", err))
         
     },[])
-    console.log(user?.keyData.calorieCount)
+    console.log(user)
 
 
     return (
@@ -32,26 +35,34 @@ function Home() {
                     <div className="home__chart"> Chart</div>
                     <div className="home__statistics"> 
                         <div className="home__statistics__wrapper">
-                            <img className="home__statistics__wrapper--icon"src={Bodyweight} alt="Icon bodyweight"/>
+                            <img className="home__statistics__wrapper--icon"src={calories} alt="Icon bodyweight"/>
                             <div className="home__statistics__wrapper--text">
-                                <h3>1930 kcal</h3>
+                                <h3>{user?.keyData.calorieCount} kcal</h3>
                                 <p>Calories</p>
                             </div>
                         </div>
                         <div className="home__statistics__wrapper">
-                            <img className="home__statistics__wrapper--icon"src={Bodyweight} alt="Icon bodyweight"/>
-                            <div>
-                                <div>1930 kcal</div>
-                                <div>Calories</div>
+                            <img className="home__statistics__wrapper--icon"src={proteins} alt="Icon bodyweight"/>
+                            <div className="home__statistics__wrapper--text">
+                                <h3>{user?.keyData.proteinCount}g</h3>
+                                <p>Protéines</p>
                             </div>
                         </div>
                         <div className="home__statistics__wrapper">
-                            <img className="home__statistics__wrapper--icon"src={Bodyweight} alt="Icon bodyweight"/>
-                            <div>
-                                <div>1930 kcal</div>
-                                <div>Calories</div>
+                            <img className="home__statistics__wrapper--icon"src={carbs} alt="Icon bodyweight"/>
+                            <div className="home__statistics__wrapper--text">
+                                <h3>{user?.keyData.carbohydrateCount}g</h3>
+                                <p>Glucides</p>
                             </div>
                         </div>
+                        <div className="home__statistics__wrapper">
+                            <img className="home__statistics__wrapper--icon"src={fat} alt="Icon bodyweight"/>
+                            <div className="home__statistics__wrapper--text">
+                                <h3>{user?.keyData.lipidCount}g</h3>
+                                <p>Lipides</p>
+                            </div>
+                        </div>
+    
                     </div>
             </div>
             </div>
