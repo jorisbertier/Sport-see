@@ -28,10 +28,6 @@ function Home() {
         <div className="home">
             <Asidebar/>
             <div className="home__wrapper">
-                {/* <div className="home__wrapper--banner">
-                    <h1>Bonjour <span>{user?.userInfos.firstName}</span></h1>
-                    <p> Félicitation ! Vous avez explosé vos objectifs hier 👏 </p>
-                </div> */}
                 <Banner name ={user?.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart"> Chart</div>
