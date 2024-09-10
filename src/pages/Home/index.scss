@@ -6,11 +6,17 @@
     &__wrapper {
         width: 95vw;
         &--banner {
-            background-color: blue;
             width: 90%;
             margin: 0 auto;
             margin-top: 50px;
             margin-bottom: 50px;
+            h1 {
+                font-size: 48px;
+                margin-bottom: 30px ;
+                span {
+                    color: $second-color;
+                }
+            }
         }
         &--statistics {
             display: flex;
@@ -22,9 +28,36 @@
                 height: 200px;
             }
             .home__statistics {
-                background-color: purple;
                 height: 200px;
                 width: 20%;
+                gap: 50px;
+                display: flex;
+                flex-direction: column;
+                &__wrapper {
+                    display: flex;
+                    width: 70%;
+                    margin: 0 auto;
+                    
+                    &--icon {
+                        height: 50px;
+                        width: 50px;
+                    }
+                    &--text {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        padding-left: 10px;
+                        h3 {
+
+                        }
+                        p {
+                            font-size: 14px;
+                            color: #74798C;
+                            ;
+                        }
+                    }
+                }
             }
         }
     }
