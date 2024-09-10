@@ -4,20 +4,6 @@
     width: 100vw;
 
     &__wrapper {
-        width: 95vw;
-        &--banner {
-            width: 90%;
-            margin: 0 auto;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            h1 {
-                font-size: 48px;
-                margin-bottom: 30px ;
-                span {
-                    color: $second-color;
-                }
-            }
-        }
         &--statistics {
             display: flex;
             width: 90%;
