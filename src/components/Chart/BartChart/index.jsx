@@ -95,7 +95,7 @@ export default class Example extends PureComponent {
           if (active && payload && payload.length) {
             return (
               <div className="custom-tooltip" style={{background : 'red', width: '60px', height: '100px', display: 'flex',gap: '20px',
-                justifyContent: 'center', alignItems: 'center', flexDirection: 'column'
+                justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginLeft: '30px', marginBottom: '130px'
               }}>
                 {/* <p className="label">{`${label} : ${payload[0].value}`}</p> */}
                 <p className="label" style={{fontSize: '10px', color: 'white', fontWeight: '500'}}>{`${payload[0].value}kg`}</p>
@@ -105,6 +105,10 @@ export default class Example extends PureComponent {
           }
         
           return null;
+        };
+
+        const tickFormatter = (tick) => {
+          return (parseInt(tick, 10) + 1).toString();
         };
 
     console.log({sessions})
@@ -126,14 +130,14 @@ export default class Example extends PureComponent {
             horizontal={true}
             vertical={false}
           />
-          <XAxis dataKey="day" />
+          <XAxis tickFormatter={tickFormatter}/>
           <YAxis
           orientation="right" tickLine={false} axisLine={false}
           />
           <Tooltip
           content={<CustomTooltip />} 
           />
-          <Legend />
+          {/* <Legend /> */}
           <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="kilogram" fill="#282D30" activeBar={<Rectangle fill="#282D30" stroke="#282D30" />} />
           <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="calories" fill="#E60000" activeBar={<Rectangle fill="#E60000" stroke="#E60000" />} />
         </BarChart>
