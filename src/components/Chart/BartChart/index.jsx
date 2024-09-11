@@ -58,7 +58,7 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 //   },
 // ];
 
-export default class Example extends PureComponent {
+export default class Barchart extends PureComponent {
   static demoUrl = 'https://codesandbox.io/p/sandbox/simple-bar-chart-72d7y5';
 
   constructor(props) {
@@ -85,6 +85,7 @@ export default class Example extends PureComponent {
       console.log('Error get data activity', err)
     })
   }
+  
 
   render() {
 
@@ -107,16 +108,19 @@ export default class Example extends PureComponent {
           return null;
         };
 
+        const maxWeight = Math.max(...sessions.map(session => session.kilogram));
+        const minWeight = Math.min(...sessions.map(session => session.kilogram));
+        console.log(minWeight)
+        const yAxisDomain = [minWeight - 2, maxWeight + 2];
+
         const tickFormatter = (tick) => {
           return (parseInt(tick, 10) + 1).toString();
         };
 
-    console.log({sessions})
+    // console.log({sessions})
     return (
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
-          height={300}
           data={sessions}
           margin={{
             top: 5,
@@ -132,10 +136,17 @@ export default class Example extends PureComponent {
           />
           <XAxis tickFormatter={tickFormatter}/>
           <YAxis
-          orientation="right" tickLine={false} axisLine={false}
+          orientation="right"
+          tick={{ fill: '#9B9EAC' }}
+          tickLine={false}
+          axisLine={false}
+          // domain={yAxisDomain}
+          tickCount={3}
+          tickMargin={50}
           />
           <Tooltip
-          content={<CustomTooltip />} 
+          content={<CustomTooltip />}
+          cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
           />
           {/* <Legend /> */}
           <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="kilogram" fill="#282D30" activeBar={<Rectangle fill="#282D30" stroke="#282D30" />} />

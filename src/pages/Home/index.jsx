@@ -6,7 +6,7 @@ import fat from '../../assets/images/fat-icon.png';
 import { useState, useEffect } from "react";
 import StaticalCard from "../../components/StaticalCard";
 import Banner from "../../components/Banner";
-import Example from "../../components/Chart/BartChart";
+import Barchart from "../../components/Chart/BartChart";
 
 function Home() {
 
@@ -31,7 +31,12 @@ function Home() {
                 <Banner name ={user?.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart">
-                        <Example/>
+                        <Barchart/>
+                        <div className="home__chart__container">
+                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                        </div>
                     </div>
                     <div className="home__statistics"> 
                         <StaticalCard dataNutriment={user?.keyData.calorieCount} typeOfNutriment="Calories" image={calories} unit=" kcal"/>
@@ -39,7 +44,7 @@ function Home() {
                         <StaticalCard dataNutriment={user?.keyData.carbohydrateCount} typeOfNutriment="Glucides" image={carbs} unit="g"/>
                         <StaticalCard dataNutriment={user?.keyData.lipidCount} typeOfNutriment="Lipides" image={fat} unit="g"/>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
     )
