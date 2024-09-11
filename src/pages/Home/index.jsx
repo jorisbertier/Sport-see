@@ -6,6 +6,7 @@ import fat from '../../assets/images/fat-icon.png';
 import { useState, useEffect } from "react";
 import StaticalCard from "../../components/StaticalCard";
 import Banner from "../../components/Banner";
+import Example from "../../components/Chart/BartChart";
 
 function Home() {
 
@@ -21,7 +22,6 @@ function Home() {
         .catch(err => console.log("Error fetch", err))
         
     },[])
-    console.log(user?.userInfos)
 
 
     return (
@@ -30,7 +30,9 @@ function Home() {
             <div className="home__wrapper">
                 <Banner name ={user?.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
-                    <div className="home__chart"> Chart</div>
+                    <div className="home__chart">
+                        <Example/>
+                    </div>
                     <div className="home__statistics"> 
                         <StaticalCard dataNutriment={user?.keyData.calorieCount} typeOfNutriment="Calories" image={calories} unit=" kcal"/>
                         <StaticalCard dataNutriment={user?.keyData.proteinCount} typeOfNutriment="Protéines" image={proteins} unit="g"/>
