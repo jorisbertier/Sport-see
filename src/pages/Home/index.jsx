@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import StaticalCard from "../../components/StaticalCard";
 import Banner from "../../components/Banner";
 import Barchart from "../../components/Chart/BartChart";
+import Areachart from "../../components/Chart/AreaChart";
 
 function Home() {
 
@@ -33,7 +34,7 @@ function Home() {
                     <div className="home__chart">
                         <Barchart/>
                         <div className="home__chart__container">
-                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                                <Areachart />
                                 <div style={{height : '100px', width: '100px', background : 'red'}}></div>
                                 <div style={{height : '100px', width: '100px', background : 'red'}}></div>
                         </div>
