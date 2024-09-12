@@ -23,6 +23,6 @@ export const getUserAverageSessions = async (userId) => {
     }
     catch(error) {
         console.log('Error getting user average session', error);
-        throw error;
+        // throw error;
     }
 }

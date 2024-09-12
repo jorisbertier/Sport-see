@@ -1,101 +1,94 @@
-import React, { PureComponent } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import { getUserAverageSessions } from '../../../services/api';
-import { useState, useEffect } from 'react';
 
-const data = [
-    {
-        "name": "Page A",
-        "uv": 4000,
-        "pv": 2400,
-        "amt": 2400
-    },
-    {
-        "name": "Page B",
-        "uv": 3000,
-        "pv": 1398,
-        "amt": 2210
-    },
-    {
-        "name": "Page C",
-        "uv": 2000,
-        "pv": 9800,
-        "amt": 2290
-    },
-    {
-        "name": "Page D",
-        "uv": 2780,
-        "pv": 3908,
-        "amt": 2000
-    },
-    {
-        "name": "Page E",
-        "uv": 1890,
-        "pv": 4800,
-        "amt": 2181
-    },
-    {
-        "name": "Page F",
-        "uv": 2390,
-        "pv": 3800,
-        "amt": 2500
-    },
-    {
-        "name": "Page G",
-        "uv": 3490,
-        "pv": 4300,
-        "amt": 2100
-    }
-]
-    
+import React, { useState, useEffect } from 'react';
+import { AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
+import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
+    const [sessionData, setSessionData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const [sessionData, setSessionData] = useState([])
-    
-    useEffect(()=> {
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getUserAverageSessions(12)
-                setSessionData(data)
-                console.log(data)
+                const response = await getUserAverageSessions(12);
+                if (response && response.data && response.data.sessions) {
+                    setSessionData(response);
+                } else {
+                    throw new Error('Invalid data structure');
+                }
+            } catch (err) {
+                console.log('Error getting data user average sessions', err);
+            } finally {
+                setLoading(false); // Fin du chargement
             }
-            catch(err){
-                console.log('Error getting data user average sessions', err)
-                throw err
-            }
-        }
-        fetchData()
-    }, [])
+        };
 
-    console.log(sessionData.data.sessions)
+        fetchData();
+    }, []);
 
     const formatLabel = (value) => {
-		if (value === 1) return 'L'
-		if (value === 2) return 'M'
-		if (value === 3) return 'M'
-		if (value === 4) return 'J'
-		if (value === 5) return 'V'
-		if (value === 6) return 'S'
-		if (value === 7) return 'D'
-		return value
-	}
+        if (value === 1) return 'L';
+        if (value === 2) return 'M';
+        if (value === 3) return 'M';
+        if (value === 4) return 'J';
+        if (value === 5) return 'V';
+        if (value === 6) return 'S';
+        if (value === 7) return 'D';
+        return value;
+    };
+
+    const CustomAxisTick = ({ x, y, payload }) => (
+        <text x={x - 30} y={y + 10} dy={16} textAnchor="middle" fill="rgba(255, 255, 255, 0.6)">
+            {payload.value}
+        </text>
+    );
+
+    if (loading) {
+        return <div>Loading...</div>; 
+    }
+
+    if (!sessionData || !sessionData.data || !sessionData.data.sessions) {
+        return <div>No data available</div>;
+    }
+
     return (
-        <AreaChart width={300} height={300} data={sessionData.data.sessions}
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+        <AreaChart
+            width={300}
+            height={300}
+            data={sessionData.data.sessions}
+            margin={{ top: 10, right: 0, left: 0, bottom: 30 }}
+            style={{ background: 'red', borderRadius: '10px' }}
+        >
             <defs>
-                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="15%" stopColor="#8884d8" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" />
+                    <stop offset="65%" stopColor="rgba(255, 255, 255, 0.5)" />
+                    <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
                 </linearGradient>
             </defs>
-            <XAxis dataKey={data.day} tickCount={0} tickFormatter={formatLabel}/>
-            {/* <YAxis /> */}
-            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis
+                dataKey="day"
+                tickFormatter={formatLabel}
+                stroke="rgba(255, 255, 255, 1)"
+                axisLine={false}
+                tickLine={false}
+                tickMargin={10}
+                padding={{ left: 20, right: 20 }}
+                domain={['dataMin-10', 'dataMax+10']}
+                // tick={<CustomAxisTick />}
+            />
+            <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
             <Tooltip />
-            <Area type="monotone" dataKey="sessionLength" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-            </AreaChart>
-    )
+            <Area
+                type="natural"
+                dataKey="sessionLength"
+                strokeWidth={3}
+                stroke="url(#strokeGradient)"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+            />
+        </AreaChart>
+    );
 }
 
-export default Areachart
+export default Areachart;
