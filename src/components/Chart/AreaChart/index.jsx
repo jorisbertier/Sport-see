@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
@@ -42,6 +42,7 @@ function Areachart() {
             {payload.value}
         </text>
     );
+    
 
     if (loading) {
         return <div>Loading...</div>; 
@@ -50,20 +51,43 @@ function Areachart() {
     if (!sessionData || !sessionData.data || !sessionData.data.sessions) {
         return <div>No data available</div>;
     }
+    const CustomCursor = (props) => {
+        const { points, width, height, stroke } = props;
+        const { x, y } = points[0];
+        const { x1, y1 } = points[1];
+        console.log(props);
+        return (
+          <Rectangle
+            fill="#E60000"
+            stroke="#E60000"
+            x={x}
+            y={y}
+            width={300}
+            height={310}
+            opacity={0.6}
+          />
+        );
+      };
 
     return (
+
         <AreaChart
             width={300}
             height={300}
             data={sessionData.data.sessions}
-            margin={{ top: 10, right: 0, left: 0, bottom: 30 }}
-            style={{ background: 'red', borderRadius: '10px' }}
+            margin={{ top: 0, right: 0, left: 0, bottom: 30 }}
+            style={{ background: 'red', borderRadius: '10px' }}  
         >
             <defs>
                 <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" />
                     <stop offset="65%" stopColor="rgba(255, 255, 255, 0.5)" />
                     <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
+                </linearGradient>
+                <linearGradient id="strokeGradientBackground" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
+                    <stop offset="65%" stopColor="rgba(255, 255, 255, 0)" />
+                    <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
                 </linearGradient>
             </defs>
             <XAxis
@@ -78,7 +102,8 @@ function Areachart() {
                 // tick={<CustomAxisTick />}
             />
             <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
-            <Tooltip />
+            <Tooltip cursor={<CustomCursor />} />
+            <Scatter dataKey="cnt" fill="red" />
             <Area
                 type="natural"
                 dataKey="sessionLength"
