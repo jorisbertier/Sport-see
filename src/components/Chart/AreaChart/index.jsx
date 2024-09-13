@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle, Legend } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle, Legend, Line } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
@@ -96,8 +96,15 @@ function Areachart() {
     return null;
     };
 
+    // const renderDot = (props) => {
+    //     const { cx, cy, stroke, value } = props;
+    //     console.log(props)
+    //     return (
+    //         <circle cx={cx -10} cy={cy -30} r={3} stroke={stroke} strokeWidth={2} fill="red" style={{top : '-200px'}}/>
+    //     );
+    // };
     return (
-        <div className="chart-container">
+        // <div className="chart-container">
         <AreaChart
             width={300}
             height={300}
@@ -130,13 +137,19 @@ function Areachart() {
                 // tick={<CustomAxisTick />}
                 interval={0}
             /> */}
-            <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
+            {/* <YAxis hide domain={['dataMin-10', 'dataMax+10']} /> */}
             <Legend height={36} content={<CustomLegend/>}/>
             <Tooltip
+            offset={0}
             cursor={<CustomCursor />}
             content={<CustomTooltip />}
             />
-            <Scatter dataKey="cnt" fill="red"  points={[{ cx: 0, cy: 0, r: 0, payload: {x: 0, y: 0, z: 0 }}]}/>
+            {/* <Line
+  type="monotone"
+  dataKey="value"
+  stroke="#8884d8"
+  dot={false} // Masque les points
+/> */}
             <Area
                 type="basis"
                 dataKey="sessionLength"
@@ -144,9 +157,11 @@ function Areachart() {
                 stroke="url(#strokeGradient)"
                 fillOpacity={1}
                 fill="url(#colorUv)"
+                dot={false}
+                // activeDot={renderDot}
             />
         </AreaChart>
-            </div>
+            // </div>
     );
 }
 
