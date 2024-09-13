@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle, Legend, Line } from 'recharts';
+import { AreaChart, Area, Tooltip, Rectangle, Legend } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
