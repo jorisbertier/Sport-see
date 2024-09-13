@@ -8,6 +8,7 @@ import StaticalCard from "../../components/StaticalCard";
 import Banner from "../../components/Banner";
 import Barchart from "../../components/Chart/BartChart";
 import Areachart from "../../components/Chart/AreaChart";
+import Radarchart from "../../components/Chart/RadarChart";
 
 function Home() {
 
@@ -35,7 +36,7 @@ function Home() {
                         <Barchart/>
                         <div className="home__chart__container">
                                 <Areachart />
-                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                                <Radarchart />
                                 <div style={{height : '100px', width: '100px', background : 'red'}}></div>
                         </div>
                     </div>
