@@ -48,6 +48,7 @@ export default class Barchart extends PureComponent {
         const maxWeight = Math.max(...sessions.map(session => session.kilogram));
         const minWeight = Math.min(...sessions.map(session => session.kilogram));
         console.log(minWeight)
+        console.log(maxWeight)
         const yAxisDomain = [minWeight - 2, maxWeight + 2];
 
         const tickFormatter = (tick) => {
@@ -56,14 +57,15 @@ export default class Barchart extends PureComponent {
 
     // console.log({sessions})
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className="responsive-container">
         <BarChart
           data={sessions}
+          // barGap="6"
           margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
+            top: 25,
+            right: 25,
+            left: 25,
+            bottom: 25,
           }}
           >
           <CartesianGrid
@@ -71,14 +73,17 @@ export default class Barchart extends PureComponent {
             horizontal={true}
             vertical={false}
           />
-          <XAxis tickFormatter={tickFormatter}/>
+          <XAxis tickFormatter={tickFormatter} tickLine={false}/>
           <YAxis
           orientation="right"
           tick={{ fill: '#9B9EAC' }}
           tickLine={false}
           axisLine={false}
+          stroke="#9B9EAC"
           // domain={yAxisDomain}
-          tickCount={3}
+          domain={[minWeight - 2, maxWeight]}
+          allowDataOverflow={true}
+          tickCount={4}
           tickMargin={50}
           />
           <Tooltip

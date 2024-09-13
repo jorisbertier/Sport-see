@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, Scatter, Rectangle, Legend } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
@@ -38,11 +38,20 @@ function Areachart() {
     };
 
     const CustomAxisTick = ({ x, y, payload }) => (
-        <text x={x - 30} y={y + 10} dy={16} textAnchor="middle" fill="rgba(255, 255, 255, 0.6)">
+        <text className='test' x={x} y={y + 10} dy={0} textAnchor="" fill="rgba(255, 255, 255, 0.6)">
             {payload.value}
         </text>
     );
+
+    const CustomLegend = (props) => {
+        const { payload } = props;
     
+        return (
+
+            <span className='recharts-legend-item-text'>Durée moyenne <br></br>des sessions</span>
+
+        );
+    };
 
     if (loading) {
         return <div>Loading...</div>; 
@@ -54,7 +63,7 @@ function Areachart() {
     const CustomCursor = (props) => {
         const { points, width, height, stroke } = props;
         const { x, y } = points[0];
-        const { x1, y1 } = points[1];
+        // const { x1, y1 } = points[1];
         console.log(props);
         return (
           <Rectangle
@@ -65,6 +74,7 @@ function Areachart() {
             width={300}
             height={310}
             opacity={0.6}
+            borderRadius={30}
           />
         );
       };
@@ -97,13 +107,14 @@ function Areachart() {
                 axisLine={false}
                 tickLine={false}
                 tickMargin={10}
-                padding={{ left: 20, right: 20 }}
-                domain={['dataMin-10', 'dataMax+10']}
-                // tick={<CustomAxisTick />}
+                padding={{ left: -20, right: -20 }}
+                // domain={['dataMin-30', 'dataMax-30']}
+                tick={<CustomAxisTick />}
             />
             <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
             <Tooltip cursor={<CustomCursor />} />
             <Scatter dataKey="cnt" fill="red" />
+            <Legend className="test" height={36} content={<CustomLegend/>}/>
             <Area
                 type="natural"
                 dataKey="sessionLength"
