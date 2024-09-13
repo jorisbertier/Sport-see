@@ -15,10 +15,10 @@ const data = [
     //   "fullMark": 150
     // },
     {
-      "subject": "English",
-      "A": 86,
-      "B": 130,
-      "fullMark": 150
+        "subject": "English",
+        "A": 86,
+        "B": 130,
+        "fullMark": 150
     },
     {
       "subject": "Geography",

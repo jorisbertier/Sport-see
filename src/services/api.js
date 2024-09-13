@@ -23,6 +23,21 @@ export const getUserAverageSessions = async (userId) => {
     }
     catch(error) {
         console.log('Error getting user average session', error);
-        // throw error;
+        throw error;
+    }
+}
+
+export const getUserPerformance = async (userId) => {
+    try {
+        const response = await fetch(`http://localhost:3000/user/${userId}/performance`);
+        if (!response.ok) {
+            throw new Error('Error getting user performance data');
+        }
+        const data = response.json()
+        console.log(data)
+        return data;
+    }
+    catch(err) {
+        console.log('Error getting data user performance', err)
     }
 }
