@@ -45,13 +45,30 @@ function Areachart() {
 
     const CustomLegend = (props) => {
         const { payload } = props;
+        console.log(payload)
     
         return (
-
+            <div>
             <span className='recharts-legend-item-text'>Durée moyenne <br></br>des sessions</span>
+            <div className='recharts-legend-item-day'>
+            <div>L</div>
+            <div>M</div>
+            <div>M</div>
+            <div>J</div>
+            <div>V</div>
+            <div>S</div>
+            <div>D</div>
+        </div>
+        </div>
 
         );
     };
+    // const CustomLegendDays = () => {
+    //     return (
+
+
+    //     );
+    // };
 
     if (loading) {
         return <div>Loading...</div>; 
@@ -80,12 +97,13 @@ function Areachart() {
       };
 
     return (
-
+        <div className="chart-container">
         <AreaChart
             width={300}
             height={300}
             data={sessionData.data.sessions}
-            margin={{ top: 0, right: 0, left: 0, bottom: 30 }}
+            margin={{ top: 0, right: -20, left: -20, bottom: 10 }}
+            padding={{left: 0}}
             style={{ background: 'red', borderRadius: '10px' }}  
         >
             <defs>
@@ -100,7 +118,7 @@ function Areachart() {
                     <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
                 </linearGradient>
             </defs>
-            <XAxis
+            {/* <XAxis
                 dataKey="day"
                 tickFormatter={formatLabel}
                 stroke="rgba(255, 255, 255, 1)"
@@ -111,21 +129,22 @@ function Areachart() {
                 // domain={['dataMin-30', 'dataMax-30']}
                 // tick={<CustomAxisTick />}
                 interval={0}
-            />
+            /> */}
             <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
+            <Legend height={36} content={<CustomLegend/>}/>
             <Tooltip cursor={<CustomCursor />} />
             <Scatter dataKey="cnt" fill="red" />
-            <Legend className="test" height={36} content={<CustomLegend/>}/>
             <Area
-                type="natural"
+                type="bumpX"
                 dataKey="sessionLength"
                 strokeWidth={3}
                 stroke="url(#strokeGradient)"
                 fillOpacity={1}
                 fill="url(#colorUv)"
-                padding={{ left: -20, right: -20 }}
+                // padding={{ left: -20, right: -20 }}
             />
         </AreaChart>
+            </div>
     );
 }
 

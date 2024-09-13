@@ -11,6 +11,24 @@
     line-height: 24px;
     z-index: 0;
 }
+.recharts-legend-item-day {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 260px;
+    height: 36px;
+    left: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    top: 0;
+    color: #FFFFFF;
+    opacity: 0.7;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    z-index: 0;
+}
 
 .recharts-legend-icon {
     height: 0;
@@ -21,7 +39,17 @@
     border-radius: 10px;
 }
 
-.test {
-    display: flex;
-    color: blue;
+.chart-container {
+    position: relative; /* Position relative pour le conteneur principal */
+    width: 300px; /* Ajustez la largeur selon vos besoins */
+    height: 300px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.x-axis-container {
+    position: absolute;
+    bottom: 0; /* Positionné au bas du conteneur */
+    left: 0; /* Aligné à gauche du conteneur */
+    width: 100%; /* Largeur du conteneur */
+    height: 36px; /* Hauteur de l'axe X */
+    pointer-events: none; /* Pour que l'axe X ne capture pas les événements de souris */
 }
