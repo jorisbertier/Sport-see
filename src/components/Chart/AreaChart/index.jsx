@@ -37,11 +37,11 @@ function Areachart() {
         return value;
     };
 
-    const CustomAxisTick = ({ x, y, payload }) => (
-        <text className='test' x={x} y={y + 10} dy={0} textAnchor="" fill="rgba(255, 255, 255, 0.6)">
-            {payload.value}
-        </text>
-    );
+    // const CustomAxisTick = ({ x, y, payload }) => (
+    //     <text className='test' x={x} y={y + 10} dy={0} textAnchor="" fill="rgba(255, 255, 255, 0.6)">
+    //         {payload.value}
+    //     </text>
+    // );
 
     const CustomLegend = (props) => {
         const { payload } = props;
@@ -107,9 +107,10 @@ function Areachart() {
                 axisLine={false}
                 tickLine={false}
                 tickMargin={10}
-                padding={{ left: -20, right: -20 }}
+                padding={{ left: 20, right: 30 }}
                 // domain={['dataMin-30', 'dataMax-30']}
-                tick={<CustomAxisTick />}
+                // tick={<CustomAxisTick />}
+                interval={0}
             />
             <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
             <Tooltip cursor={<CustomCursor />} />
@@ -122,6 +123,7 @@ function Areachart() {
                 stroke="url(#strokeGradient)"
                 fillOpacity={1}
                 fill="url(#colorUv)"
+                padding={{ left: -20, right: -20 }}
             />
         </AreaChart>
     );
