@@ -19,56 +19,44 @@ function Areachart() {
             } catch (err) {
                 console.log('Error getting data user average sessions', err);
             } finally {
-                setLoading(false); // Fin du chargement
+                setLoading(false);
             }
         };
 
         fetchData();
     }, []);
 
-    const formatLabel = (value) => {
-        if (value === 1) return 'L';
-        if (value === 2) return 'M';
-        if (value === 3) return 'M';
-        if (value === 4) return 'J';
-        if (value === 5) return 'V';
-        if (value === 6) return 'S';
-        if (value === 7) return 'D';
-        return value;
-    };
-
-    // const CustomAxisTick = ({ x, y, payload }) => (
-    //     <text className='test' x={x} y={y + 10} dy={0} textAnchor="" fill="rgba(255, 255, 255, 0.6)">
-    //         {payload.value}
-    //     </text>
-    // );
-
+    // const formatLabel = (value) => {
+    //     if (value === 1) return 'L';
+    //     if (value === 2) return 'M';
+    //     if (value === 3) return 'M';
+    //     if (value === 4) return 'J';
+    //     if (value === 5) return 'V';
+    //     if (value === 6) return 'S';
+    //     if (value === 7) return 'D';
+    //     return value;
+    // };
     const CustomLegend = (props) => {
         const { payload } = props;
         console.log(payload)
     
         return (
             <div>
-            <span className='recharts-legend-item-text'>Durée moyenne <br></br>des sessions</span>
-            <div className='recharts-legend-item-day'>
-            <div>L</div>
-            <div>M</div>
-            <div>M</div>
-            <div>J</div>
-            <div>V</div>
-            <div>S</div>
-            <div>D</div>
-        </div>
-        </div>
+                <span className='recharts-legend-item-text'>Durée moyenne des<br></br> sessions</span>
+                
+                <div className='recharts-legend-item-day'>
+                    <div>L</div>
+                    <div>M</div>
+                    <div>M</div>
+                    <div>J</div>
+                    <div>V</div>
+                    <div>S</div>
+                    <div>D</div>
+                </div>
+            </div>
 
         );
     };
-    // const CustomLegendDays = () => {
-    //     return (
-
-
-    //     );
-    // };
 
     if (loading) {
         return <div>Loading...</div>; 
@@ -81,7 +69,6 @@ function Areachart() {
         const { points, width, height, stroke } = props;
         const { x, y } = points[0];
         // const { x1, y1 } = points[1];
-        console.log(props);
         return (
           <Rectangle
             fill="#E60000"
@@ -96,13 +83,26 @@ function Areachart() {
         );
       };
 
+    const CustomTooltip = ({ active, payload }) => {
+
+        if (active && payload && payload.length) {
+        return (
+        <div className='payload--arechart'>
+            {payload[0].value} min
+        </div>
+        );
+    }
+    
+    return null;
+    };
+
     return (
         <div className="chart-container">
         <AreaChart
             width={300}
             height={300}
             data={sessionData.data.sessions}
-            margin={{ top: 0, right: -20, left: -20, bottom: 10 }}
+            margin={{ top: 0, right: -20, left: -20, bottom: -10 }}
             padding={{left: 0}}
             style={{ background: 'red', borderRadius: '10px' }}  
         >
@@ -132,16 +132,18 @@ function Areachart() {
             /> */}
             <YAxis hide domain={['dataMin-10', 'dataMax+10']} />
             <Legend height={36} content={<CustomLegend/>}/>
-            <Tooltip cursor={<CustomCursor />} />
-            <Scatter dataKey="cnt" fill="red" />
+            <Tooltip
+            cursor={<CustomCursor />}
+            content={<CustomTooltip />}
+            />
+            <Scatter dataKey="cnt" fill="red"  points={[{ cx: 0, cy: 0, r: 0, payload: {x: 0, y: 0, z: 0 }}]}/>
             <Area
-                type="bumpX"
+                type="basis"
                 dataKey="sessionLength"
                 strokeWidth={3}
                 stroke="url(#strokeGradient)"
                 fillOpacity={1}
                 fill="url(#colorUv)"
-                // padding={{ left: -20, right: -20 }}
             />
         </AreaChart>
             </div>
