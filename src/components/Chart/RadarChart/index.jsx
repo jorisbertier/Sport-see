@@ -1,46 +1,8 @@
 import React from 'react';
-import { PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, RadarChart } from 'recharts';
+import { PolarGrid, PolarAngleAxis, ResponsiveContainer, Radar, Legend, RadarChart } from 'recharts';
 import { useState, useEffect } from 'react';
 import { getUserPerformance } from '../../../services/api';
 
-const data = [
-    {
-      "subject": "Math",
-      "A": 120,
-      "B": 110,
-      "fullMark": 150
-    },
-    // {
-    //   "subject": "Chinese",
-    //   "A": 98,
-    //   "B": 130,
-    //   "fullMark": 150
-    // },
-    {
-        "subject": "English",
-        "A": 86,
-        "fullMark": 150
-    },
-    {
-      "subject": "Geography",
-      "A": 99,
-      "B": 100,
-      "fullMark": 150
-    },
-    {
-      "subject": "Physics",
-      "A": 85,
-      "B": 90,
-      "fullMark": 150
-    },
-    {
-      "subject": "History",
-      "A": 65,
-      "B": 85,
-      "fullMark": 150
-    }
-  ]
-  
   function Radarchart() {
 
     const [userPerformanceData, setUserPerformanceData] = useState(null);
@@ -70,16 +32,26 @@ const data = [
 
     }, [])
     console.log(userPerformanceData)
-    console.log(data)
 
-    return (                             
-    <RadarChart className="radarChart"outerRadius={90} width={730} height={250} data={userPerformanceData} style={{backgroundColor: 'red'}}>
-        <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        {/* <PolarRadiusAxis angle={30} domain={[0, 150]} /> */}
-        <Radar dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-        <Legend />
-    </RadarChart>
+    const formatLabel = (value) => {
+        if(value=== 'intensity') return 'Intensité'
+        if(value=== 'cardio') return 'Cardio'
+        if(value=== 'energy') return 'Energie'
+        if(value=== 'endurance') return 'Endurance'
+        if(value=== 'strength') return 'Force'
+        if(value=== 'speed') return 'Vitesse'
+    }
+
+    return (
+    // <ResponsiveContainer width="300px" height="300px">                             
+        <RadarChart className="radarChart" outerRadius={90} width={350} height={300} data={userPerformanceData}>
+            <PolarGrid stroke="#FFFFFF" radialLines={false} polarRadius={[0, 10, 27, 49, 72, 90]} />
+            <PolarAngleAxis dataKey="subject" dy={4} tickSize={15} tickFormatter={formatLabel}/>
+            {/* <PolarRadiusAxis angle={30} domain={[0, 150]} /> */}
+            <Radar dataKey="A" fill="#FF0101B2" fillOpacity={1} />
+            <Legend />
+        </RadarChart>
+    // </ResponsiveContainer>
 )}
 
 export default Radarchart

@@ -1,0 +1,13 @@
+.radarChart {
+    background-color: $main-color;
+    opacity: 0.85;
+    border-radius: 5px;
+
+    .recharts-legend-item-text {
+        visibility: hidden;
+    }
+}
+
+tspan {
+    fill: white;
+}
