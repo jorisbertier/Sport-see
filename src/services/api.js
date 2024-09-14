@@ -33,11 +33,25 @@ export const getUserPerformance = async (userId) => {
         if (!response.ok) {
             throw new Error('Error getting user performance data');
         }
-        const data = response.json()
-        console.log(data)
+        const data = response.json();
+        console.log(data);
         return data;
     }
     catch(err) {
         console.log('Error getting data user performance', err)
+    }
+}
+
+export const getUserScore = async (userId) => {
+    try {
+        const response = await fetch(`http://localhost:3000/user/${userId}`);
+        if (!response.ok) {
+            throw new Error('Error getting user score data');
+        }
+        const data = response.json();
+        return data;
+    }
+    catch(err) {
+        console.log('Error getting user score data', err);
     }
 }

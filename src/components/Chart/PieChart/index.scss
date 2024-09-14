@@ -1,0 +1,29 @@
+.home__chart__container {
+    .pie__wrapper {
+        position: relative;
+        height: 250px;
+        width: 300px;
+        &--score {
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            &--percentage {
+                color: #282D30;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+            &--text {
+                font-size: 14px;
+                color: #74798C;
+            }
+        }
+    }
+}
