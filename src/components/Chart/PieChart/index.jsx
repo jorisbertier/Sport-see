@@ -55,28 +55,27 @@ function Piechart() {
 
   
     if (!userScoreData) {
-      return <p>Loading...</p>  // Optionnel, tu peux afficher un message de chargement
+      return <p>Loading...</p> 
     }
 
-    console.log(userScoreData.data.todayScore )
-    let scorePourcentage = userScoreData.data.todayScore * 100
-    
+    let scorePercentage = 0;
 
-    const scoreInDegrees = (scorePourcentage * 360) / 100;
+    if(userScoreData.data.todayScore) {
+      scorePercentage = userScoreData.data.todayScore * 100;
+    }
+    if(userScoreData.data.score) {
+      scorePercentage = userScoreData.data.score * 100;
+    }
+ 
+    const scoreInDegrees = (scorePercentage * 360) / 100;
     
     const data = [
       {
         "name": "Score",
-        "value": scorePourcentage
+        "value": scorePercentage
       },
 
     ];
-
-    const CustomLegend = () => {
-      return (
-          <h3 className='pie__chart--text'>Test</h3>
-        );
-    };
 
   
     return(
@@ -84,20 +83,21 @@ function Piechart() {
         <PieChart width={300} height={250} className='pie__chart'
         >
             <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%"
-            fill="#82ca9d"
-            startAngle={0}
-            endAngle={360}
-            cornerRadius={100}
+            fill="#E60000"
+            // startAngle={0}
+            // endAngle={scoreInDegrees}
+            startAngle={70}
+						endAngle={430 * 12 + 70}
+            cornerRadius={10}
 						innerRadius={"60%"}
 						outerRadius={"70%"}
             label />
-            {/* <Legend height={250} content={<CustomLegend/>}  wrapperStyle={{ zIndex: 1 }}/> */}
         </PieChart>
-        		<div className="pie__wrapper--score">
-              <div className="pie__wrapper--score--percentage">12 %</div>
-              <div className="pie__wrapper--score--text">de votre <br></br> objectif</div>
-            </div>
-            </div>
+        <div className="pie__wrapper--score">
+            <div className="pie__wrapper--score--percentage">{scorePercentage} %</div>
+            <div className="pie__wrapper--score--text">de votre <br></br> objectif</div>
+        </div>
+      </div>
     )
 }
 
