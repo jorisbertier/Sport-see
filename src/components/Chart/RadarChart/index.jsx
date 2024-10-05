@@ -19,6 +19,7 @@ import { getUserPerformance } from '../../../services/api';
                         subject: response.data.kind[item.kind],
                         A: item.value,
                     }));
+                    transformedData.reverse();
                     setUserPerformanceData(transformedData);
                 } else {
                     console.error('Unexpected response structure:', response);
