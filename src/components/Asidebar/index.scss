@@ -2,7 +2,8 @@ aside {
     height: 90vh;
     background-color: $main-color;
     width: 5vw;
-    position: relative;
+    left: 0;
+    position: fixed;
 
     .aside__wrapper {
         height: 100%;

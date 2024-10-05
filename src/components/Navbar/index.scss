@@ -4,6 +4,8 @@ nav {
     background-color: $main-color;
     align-items: center;
     height: 10vh;
+    position: fixed;
+    z-index: 2;
     .nav__wrapper--img {
         width: 15%;
         margin-left: 1%;

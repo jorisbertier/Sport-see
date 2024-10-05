@@ -80,7 +80,7 @@ function Piechart() {
   
     return(
       <div className='pie__wrapper'>
-        <PieChart width={300} height={250} className='pie__chart'
+        <PieChart width={300} height={300} className='pie__chart'
         >
             <Pie
             data={data}
