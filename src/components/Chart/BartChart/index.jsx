@@ -60,7 +60,7 @@ export default class Barchart extends PureComponent {
       <ResponsiveContainer width="100%" height="100%" className="responsive-container">
         <BarChart
           data={sessions}
-          // barGap="6"
+          barSize={7} barGap={8}
           margin={{
             top: 25,
             right: 25,
@@ -73,15 +73,16 @@ export default class Barchart extends PureComponent {
             horizontal={true}
             vertical={false}
           />
-          <XAxis tickFormatter={tickFormatter} tickLine={false}/>
+          <XAxis tickFormatter={tickFormatter} tickLine={false} tick={{stroke: '#9B9EAC', strokeWidth: 1, fontSize: 12, fontWeight: 100}}/>
           <YAxis
           orientation="right"
-          tick={{ fill: '#9B9EAC' }}
+          tick={{stroke: '#9B9EAC', strokeWidth: 1, fontSize: 12, fontWeight: 100}}
           tickLine={false}
           axisLine={false}
-          stroke="#9B9EAC"
           // domain={yAxisDomain}
-          domain={[minWeight - 2, maxWeight]}
+          // domain={[minWeight - 2, maxWeight]}
+          // domain={['dataMin-2', 'dataMax+1']}
+          // domain={['dataMin-2', 'dataMax+1']}
           allowDataOverflow={true}
           tickCount={4}
           tickMargin={50}
