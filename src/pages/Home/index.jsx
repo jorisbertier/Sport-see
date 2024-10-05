@@ -37,9 +37,9 @@ function Home() {
                         <Barchart/>
                         <div className="home__chart__container">
                                 {/* <Areachart /> */}
-                                {/* <Radarchart /> */}
+                                <Radarchart />
                                 <Piechart />
-                                <div style={{height : '100px', width: '100px', background : 'red'}}></div>
+                                {/* <div style={{height : '100px', width: '100px', background : 'red'}}></div> */}
                         </div>
                     </div>
                     <div className="home__statistics"> 
