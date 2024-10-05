@@ -64,7 +64,7 @@ function Areachart() {
             fill="#E60000"
             stroke="#E60000"
             x={x}
-            y={y}
+            y={y - 100}
             width={350}
             height={310}
             opacity={0.6}
@@ -100,7 +100,7 @@ function Areachart() {
             height={300}
             data={sessionData.data.sessions}
             // margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
-            margin={{ top: 0, right: -20, left: -20, bottom: -10 }}
+            margin={{ top: 100, right: -20, left: -20, bottom: -10 }}
             padding={{left: 0}}
             style={{ background: 'red', borderRadius: '10px' }}  
         >
