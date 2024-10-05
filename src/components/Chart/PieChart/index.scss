@@ -23,7 +23,15 @@
             &--text {
                 font-size: 14px;
                 color: #74798C;
+                line-height: 20px;
             }
+        }
+        &--scoreTitle {
+            position: absolute;
+            top: 15%; 
+            left: 20%;
+            transform: translate(-50%, -50%);
+            display: flex;
         }
     }
 }

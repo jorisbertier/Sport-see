@@ -82,21 +82,27 @@ function Piechart() {
       <div className='pie__wrapper'>
         <PieChart width={300} height={250} className='pie__chart'
         >
-            <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%"
+            <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
             fill="#E60000"
             // startAngle={0}
             // endAngle={scoreInDegrees}
             startAngle={70}
-						endAngle={430 * 12 + 70}
+						endAngle={230}
             cornerRadius={10}
 						innerRadius={"60%"}
 						outerRadius={"70%"}
-            label />
+            />
         </PieChart>
         <div className="pie__wrapper--score">
             <div className="pie__wrapper--score--percentage">{scorePercentage} %</div>
             <div className="pie__wrapper--score--text">de votre <br></br> objectif</div>
         </div>
+        <h3  className="pie__wrapper--scoreTitle">Score</h3>
       </div>
     )
 }
