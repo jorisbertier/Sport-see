@@ -26,16 +26,6 @@ function Areachart() {
         fetchData();
     }, []);
 
-    // const formatLabel = (value) => {
-    //     if (value === 1) return 'L';
-    //     if (value === 2) return 'M';
-    //     if (value === 3) return 'M';
-    //     if (value === 4) return 'J';
-    //     if (value === 5) return 'V';
-    //     if (value === 6) return 'S';
-    //     if (value === 7) return 'D';
-    //     return value;
-    // };
     const CustomLegend = (props) => {
         const { payload } = props;
         console.log(payload)
@@ -75,7 +65,7 @@ function Areachart() {
             stroke="#E60000"
             x={x}
             y={y}
-            width={300}
+            width={350}
             height={310}
             opacity={0.6}
             borderRadius={30}
@@ -109,6 +99,7 @@ function Areachart() {
             width={300}
             height={300}
             data={sessionData.data.sessions}
+            // margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
             margin={{ top: 0, right: -20, left: -20, bottom: -10 }}
             padding={{left: 0}}
             style={{ background: 'red', borderRadius: '10px' }}  
@@ -116,49 +107,29 @@ function Areachart() {
             <defs>
                 <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" />
-                    <stop offset="65%" stopColor="rgba(255, 255, 255, 0.5)" />
+                    <stop offset="75%" stopColor="rgba(255, 255, 255, 0.8)" />
                     <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
                 </linearGradient>
                 <linearGradient id="strokeGradientBackground" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
-                    <stop offset="65%" stopColor="rgba(255, 255, 255, 0)" />
+                    <stop offset="75%" stopColor="rgba(255, 255, 255, 0)" />
                     <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
                 </linearGradient>
             </defs>
-            {/* <XAxis
-                dataKey="day"
-                tickFormatter={formatLabel}
-                stroke="rgba(255, 255, 255, 1)"
-                axisLine={false}
-                tickLine={false}
-                tickMargin={10}
-                padding={{ left: 20, right: 30 }}
-                // domain={['dataMin-30', 'dataMax-30']}
-                // tick={<CustomAxisTick />}
-                interval={0}
-            /> */}
-            {/* <YAxis hide domain={['dataMin-10', 'dataMax+10']} /> */}
-            <Legend height={36} content={<CustomLegend/>}/>
+            <Legend height={80} content={<CustomLegend/>}/>
             <Tooltip
             offset={0}
             cursor={<CustomCursor />}
             content={<CustomTooltip />}
             />
-            {/* <Line
-  type="monotone"
-  dataKey="value"
-  stroke="#8884d8"
-  dot={false} // Masque les points
-/> */}
             <Area
-                type="basis"
+                type="monotone"
                 dataKey="sessionLength"
                 strokeWidth={3}
                 stroke="url(#strokeGradient)"
                 fillOpacity={1}
                 fill="url(#colorUv)"
                 dot={false}
-                // activeDot={renderDot}
             />
         </AreaChart>
             // </div>
