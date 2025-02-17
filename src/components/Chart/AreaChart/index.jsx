@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, Tooltip, Rectangle, Legend } from 'recharts';
+import { AreaChart, Area, Tooltip, Rectangle, Legend, ResponsiveContainer } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
 function Areachart() {
@@ -94,45 +94,45 @@ function Areachart() {
     //     );
     // };
     return (
-        // <div className="chart-container">
-        <AreaChart
-            width={300}
-            height={300}
-            data={sessionData.data.sessions}
-            // margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
-            margin={{ top: 100, right: -20, left: -20, bottom: -10 }}
-            padding={{left: 0}}
-            style={{ background: 'red', borderRadius: '10px' }}  
-        >
-            <defs>
-                <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" />
-                    <stop offset="75%" stopColor="rgba(255, 255, 255, 0.8)" />
-                    <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
-                </linearGradient>
-                <linearGradient id="strokeGradientBackground" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
-                    <stop offset="75%" stopColor="rgba(255, 255, 255, 0)" />
-                    <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
-                </linearGradient>
-            </defs>
-            <Legend height={80} content={<CustomLegend/>}/>
-            <Tooltip
-            offset={0}
-            cursor={<CustomCursor />}
-            content={<CustomTooltip />}
-            />
-            <Area
-                type="monotone"
-                dataKey="sessionLength"
-                strokeWidth={3}
-                stroke="url(#strokeGradient)"
-                fillOpacity={1}
-                fill="url(#colorUv)"
-                dot={false}
-            />
-        </AreaChart>
-            // </div>
+        <ResponsiveContainer width={320} height="100%" minHeight="200px" minWidth="200px">  
+            <AreaChart
+                width={300}
+                height={300}
+                data={sessionData.data.sessions}
+                // margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
+                margin={{ top: 100, right: -20, left: -20, bottom: -10 }}
+                padding={{left: 0}}
+                style={{ background: 'red', borderRadius: '10px' }}  
+            >
+                <defs>
+                    <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" />
+                        <stop offset="75%" stopColor="rgba(255, 255, 255, 0.8)" />
+                        <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
+                    </linearGradient>
+                    <linearGradient id="strokeGradientBackground" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
+                        <stop offset="75%" stopColor="rgba(255, 255, 255, 0)" />
+                        <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
+                    </linearGradient>
+                </defs>
+                <Legend height={80} content={<CustomLegend/>}/>
+                <Tooltip
+                offset={0}
+                cursor={<CustomCursor />}
+                content={<CustomTooltip />}
+                />
+                <Area
+                    type="monotone"
+                    dataKey="sessionLength"
+                    strokeWidth={3}
+                    stroke="url(#strokeGradient)"
+                    fillOpacity={1}
+                    fill="url(#colorUv)"
+                    dot={false}
+                />
+            </AreaChart>
+           </ResponsiveContainer>
     );
 }
 

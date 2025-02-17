@@ -1,6 +1,8 @@
 .home__chart__container {
     .pie__wrapper {
         position: relative;
+        justify-content: center;
+        align-items: center;
         height: 300px;
         width: 300px;
         &--score {
@@ -13,6 +15,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            z-index: 3;
 
             &--percentage {
                 color: #282D30;
@@ -32,6 +35,15 @@
             left: 20%;
             transform: translate(-50%, -50%);
             display: flex;
+        }
+    }
+}
+
+@media (max-width: 1250px) { 
+    .home__chart__container {
+        .pie__wrapper {
+            height: 200px;
+            width: 200px;
         }
     }
 }

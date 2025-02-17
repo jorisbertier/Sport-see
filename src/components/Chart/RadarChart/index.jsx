@@ -44,15 +44,17 @@ import { getUserPerformance } from '../../../services/api';
     }
 
     return (
-    // <ResponsiveContainer width="300px" height="300px">                             
-        <RadarChart className="radarChart" outerRadius={90} width={350} height={300} data={userPerformanceData}>
-            <PolarGrid stroke="#FFFFFF" radialLines={false} polarRadius={[0, 10, 27, 49, 72, 90]} />
-            <PolarAngleAxis dataKey="subject" dy={4} tickSize={15} tickFormatter={formatLabel}/>
-            {/* <PolarRadiusAxis angle={30} domain={[0, 150]} /> */}
-            <Radar dataKey="A" fill="#FF0101B2" fillOpacity={1} />
-            <Legend />
-        </RadarChart>
-    // </ResponsiveContainer>
+    // <div className='responsive--chart'>
+        <ResponsiveContainer width={320} height="100%">                             
+            <RadarChart className="radarChart" outerRadius={90} data={userPerformanceData}>
+                <PolarGrid stroke="#FFFFFF" radialLines={false} polarRadius={[0, 10, 27, 49, 72, 90]} />
+                <PolarAngleAxis dataKey="subject" dy={4} tickSize={15} tickFormatter={formatLabel}/>
+                {/* <PolarRadiusAxis angle={30} domain={[0, 150]} /> */}
+                <Radar dataKey="A" fill="#FF0101B2" fillOpacity={1} />
+                <Legend />
+            </RadarChart>
+        </ResponsiveContainer>
+    // </div>
 )}
 
 export default Radarchart

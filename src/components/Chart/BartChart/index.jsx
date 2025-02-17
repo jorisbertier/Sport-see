@@ -57,7 +57,7 @@ export default class Barchart extends PureComponent {
 
     // console.log({sessions})
     return (
-      <ResponsiveContainer width="100%" height="100%" className="responsive-container">
+      <ResponsiveContainer width="100%" height="100%" minHeight="200px" minWidth="200px" className="responsive-container">
         <BarChart
           data={sessions}
           barSize={7} barGap={8}

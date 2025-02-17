@@ -1,41 +1,7 @@
-import { PieChart, Pie, Legend } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from 'react';
 import { getUserScore } from '../../../services/api';
 
-// const data01 = [
-//     {
-//       "name": "Group A",
-//       "value": 400
-//     },
-//     {
-//       "name": "Group B",
-//       "value": 300
-//     },
-//     {
-//       "name": "Group C",
-//       "value": 300
-//     },
-//     {
-//       "name": "Group D",
-//       "value": 200
-//     },
-//     {
-//       "name": "Group E",
-//       "value": 278
-//     },
-//     {
-//       "name": "Group F",
-//       "value": 189
-//     }
-//   ];
-//   const data02 = [
-//     {
-//       "name": "Group A",
-//       "value": 2400
-//     },
-
-//   ];
-      
 function Piechart() {
 
     const [userScoreData, setUserScoreData] = useState(null)
@@ -79,30 +45,33 @@ function Piechart() {
 
   
     return(
-      <div className='pie__wrapper'>
-        <PieChart width={300} height={300} className='pie__chart'
-        >
-            <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            fill="#E60000"
-            // startAngle={0}
-            // endAngle={scoreInDegrees}
-            startAngle={70}
-						endAngle={230}
-            cornerRadius={10}
-						innerRadius={"60%"}
-						outerRadius={"70%"}
-            />
-        </PieChart>
-        <div className="pie__wrapper--score">
-            <div className="pie__wrapper--score--percentage">{scorePercentage} %</div>
-            <div className="pie__wrapper--score--text">de votre <br></br> objectif</div>
-        </div>
-        <h3  className="pie__wrapper--scoreTitle">Score</h3>
+      <div className='pie__wrapper responsive--chart'>
+        <ResponsiveContainer width={320} height="100%" minHeight="200px" minWidth="200px">
+          <PieChart className='pie__chart'
+          >
+              <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              fill="#E60000"
+              // startAngle={0}
+              // endAngle={scoreInDegrees}
+              startAngle={70}
+              endAngle={230}
+              cornerRadius={10}
+              innerRadius={"60%"}
+              outerRadius={"70%"}
+              />
+          </PieChart>
+          <div className="pie__wrapper--score">
+              <div className="pie__wrapper--score--percentage">{scorePercentage} %</div>
+              <div className="pie__wrapper--score--text">de votre <br></br> objectif</div>
+          </div>
+          <h3  className="pie__wrapper--scoreTitle">Score</h3>
+
+        </ResponsiveContainer>
       </div>
     )
 }

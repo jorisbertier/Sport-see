@@ -8,6 +8,19 @@
     }
 }
 
+.responsive--chart {
+    width: 300px;
+    height: 300px;
+}
+
 tspan {
     fill: white;
+}
+
+@media (max-width: 1250px) { 
+    .responsive--chart {
+            height: 270px;
+            max-width: 200px;
+        }
+
 }
