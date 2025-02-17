@@ -1,7 +1,51 @@
+@import '../../../assets/utils/variables'; 
+
 .responsive-container {
     overflow: visible;
 }
 
 .recharts-legend-item-text {
     visibility: hidden;
+}
+.activity {
+    height: 350px;
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: $grey-color;
+    border-radius: 10px;
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 25px;
+        h2 {
+            font-size: 12px;
+        }
+        &--macro {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            &--bloc {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                h3 {
+                    font-size: 12px;
+                    color: grey;
+                }
+                .dot-black {
+                    width: 6px;
+                    height: 6px;
+                    background-color: $main-color;
+                    border-radius: 50%;
+                }
+                .dot-red {
+                    width: 6px;
+                    height: 6px;
+                    background-color: $second-color;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
 }

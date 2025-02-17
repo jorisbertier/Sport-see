@@ -11,6 +11,7 @@ export default class Barchart extends PureComponent {
       sessions: [],
     }
   }
+  
 
   componentDidMount() {
     getUserActivity(12) // Pass userId
@@ -55,47 +56,81 @@ export default class Barchart extends PureComponent {
           return (parseInt(tick, 10) + 1).toString();
         };
 
-    // console.log({sessions})
+        const CustomTick = (props) => {
+          const { x, y, payload } = props;
+          return (
+            <text
+              x={x}
+              y={y}
+              dy={10}
+              textAnchor="end"
+              fontSize={14}
+              fontWeight={500}
+              fontFamily="Roboto, sans-serif"
+              fill="#9B9EAC"
+            >
+              {payload.value}
+            </text>
+          );
+        };
+
     return (
-      <ResponsiveContainer width="100%" height="100%" minHeight="200px" minWidth="200px" className="responsive-container">
-        <BarChart
-          data={sessions}
-          barSize={7} barGap={8}
-          margin={{
-            top: 25,
-            right: 25,
-            left: 25,
-            bottom: 25,
-          }}
-          >
-          <CartesianGrid
-            strokeDasharray="2 2"
-            horizontal={true}
-            vertical={false}
-          />
-          <XAxis tickFormatter={tickFormatter} tickLine={false} tick={{stroke: '#9B9EAC', strokeWidth: 1, fontSize: 12, fontWeight: 100}}/>
-          <YAxis
-          orientation="right"
-          tick={{stroke: '#9B9EAC', strokeWidth: 1, fontSize: 12, fontWeight: 100}}
-          tickLine={false}
-          axisLine={false}
-          // domain={yAxisDomain}
-          // domain={[minWeight - 2, maxWeight]}
-          // domain={['dataMin-2', 'dataMax+1']}
-          // domain={['dataMin-2', 'dataMax+1']}
-          allowDataOverflow={true}
-          tickCount={4}
-          tickMargin={50}
-          />
-          <Tooltip
-          content={<CustomTooltip />}
-          cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
-          />
-          {/* <Legend /> */}
-          <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="kilogram" fill="#282D30" activeBar={<Rectangle fill="#282D30" stroke="#282D30" />} />
-          <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="calories" fill="#E60000" activeBar={<Rectangle fill="#E60000" stroke="#E60000" />} />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className='activity'>
+        <div className='activity-wrapper'>
+          <div>
+            <h2>Activité quotidienne</h2>
+          </div>
+          <div className='activity-wrapper--macro'>
+            <div className='activity-wrapper--macro--bloc'>
+              <div className='dot-black'></div>
+              <h3>Poids (kg)</h3>
+            </div>
+            <div className='activity-wrapper--macro--bloc'>
+              <div className='dot-red'></div>
+              <h3>Calories brulées (kCal)</h3>
+            </div>
+          </div>
+        </div>
+        <ResponsiveContainer width="100%" height="100%" minHeight="200px" minWidth="200px" className="responsive-container">
+          <BarChart
+            data={sessions}
+            barSize={7} barGap={8}
+            margin={{
+              top: 25,
+              right: 25,
+              left: 25,
+              bottom: 25,
+            }}
+            >
+            <CartesianGrid
+              strokeDasharray="2 2"
+              horizontal={true}
+              vertical={false}
+            />
+            <XAxis tickFormatter={tickFormatter} tickLine={false} tick={CustomTick}/>
+            <YAxis
+            orientation="right"
+            tick={CustomTick}
+            tickLine={false}
+            axisLine={false}
+            // domain={yAxisDomain}
+            // domain={[minWeight - 2, maxWeight]}
+            // domain={['dataMin-2', 'dataMax+1']}
+            // domain={['dataMin-2', 'dataMax+1']}
+            allowDataOverflow={true}
+            tickCount={4}
+            tickMargin={50}
+            />
+            <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
+            />
+            {/* <Legend /> */}
+            <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="kilogram" fill="#282D30" activeBar={<Rectangle fill="#282D30" stroke="#282D30" />} />
+            <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="calories" fill="#E60000" activeBar={<Rectangle fill="#E60000" stroke="#E60000" />} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     );
   }
 }
