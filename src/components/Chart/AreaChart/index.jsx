@@ -32,7 +32,8 @@ function Areachart() {
     
         return (
             <div>
-                <span className='recharts-legend-item-text'>Durée moyenne des<br></br> sessions</span>
+                <div className='recharts-text'>Durée moyenne des<br></br> sessions</div>
+                {/* <div className='test'>Durée moyenne dessessions</div> */}
                 
                 <div className='recharts-legend-item-day'>
                     <div>L</div>
@@ -116,7 +117,8 @@ function Areachart() {
                         <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
                     </linearGradient>
                 </defs>
-                <Legend height={80} content={<CustomLegend/>}/>
+                <div className='recharts-legend-item-text'>Durée moyenne des<br></br> sessions</div>
+                <Legend height={80} content={CustomLegend}/>
                 <Tooltip
                 offset={0}
                 cursor={<CustomCursor />}
