@@ -45,7 +45,7 @@ function Piechart() {
 
   
     return(
-      <div className='pie__wrapper responsive--chart'>
+      <div className='pie__wrapper responsive--chart--pie'>
         <ResponsiveContainer width={320} height="100%" minHeight="200px" minWidth="200px">
           <PieChart className='pie__chart'
           >

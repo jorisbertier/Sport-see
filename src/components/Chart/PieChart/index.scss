@@ -41,9 +41,21 @@
 
 @media (max-width: 1250px) { 
     .home__chart__container {
+        // max-width: 230px;
         .pie__wrapper {
-            height: 200px;
-            width: 200px;
+            // height: 100px;
+            width: 230px;
+            max-width: 230px;
+            .pie__chart {
+                width: 230px;
+            }
         }
+    }
+    .recharts-wrapper {
+        max-width: 230px;
+        width: 230px;
+    }
+    .responsive--chart--pie {
+        max-width: 230px!important;
     }
 }
