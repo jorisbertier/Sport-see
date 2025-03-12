@@ -1,9 +1,10 @@
-import Asidebar from "../../components/Asidebar"
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Asidebar from "../../components/Asidebar";
 import proteins from '../../assets/images/protein-icon.png';
 import calories from '../../assets/images/calories-icon.png';
 import carbs from '../../assets/images/carbs-icon.png';
 import fat from '../../assets/images/fat-icon.png';
-import { useState, useEffect } from "react";
 import StaticalCard from "../../components/StaticalCard";
 import Banner from "../../components/Banner";
 import Barchart from "../../components/Chart/BartChart";
@@ -12,37 +13,46 @@ import Radarchart from "../../components/Chart/RadarChart";
 import Piechart from "../../components/Chart/PieChart";
 
 function Home() {
-
-    let [user, setUser] = useState(null)
+    const { id } = useParams();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:3000/user/18")
+        fetch(`http://localhost:3000/user/${id}`)
         .then(response => response.json())
-        .then(({data: { id, key, keyData, todayScore, userInfos}}) => {
-            // console.log(data);
-            setUser({ id, key, keyData, todayScore, userInfos});
+        .then(({data: { id, key, keyData, todayScore, userInfos }}) => {
+            setUser({ id, key, keyData, todayScore, userInfos });
+            setLoading(false); 
         })
-        .catch(err => console.log("Error fetch", err))
-        
-    },[])
+        .catch(() => (
+            navigate("/error")
+        ));
+    }, [id, navigate]);
 
+    if(loading) {
+        return (
+        <div className="loading">
+            <h2>Loading ...</h2>
+        </div>
+        )
+    }
 
     return (
         <div className="home">
-            <Asidebar/>
+            <Asidebar />
             <div className="home__wrapper">
-                <Banner name ={user?.userInfos.firstName} />
+                <Banner name={user?.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart">
-                        <Barchart/>
+                        <Barchart />
                         <div className="home__chart__container">
-                                <Areachart />
-                                <Radarchart />
-                                <Piechart />
-                                {/* <div style={{height : '100px', width: '100px', background : 'red'}}></div> */}
+                            <Areachart />
+                            <Radarchart />
+                            <Piechart />
                         </div>
                     </div>
-                    <div className="home__statistics"> 
+                    <div className="home__statistics">
                         <StaticalCard dataNutriment={user?.keyData.calorieCount} typeOfNutriment="Calories" image={calories} unit=" kcal"/>
                         <StaticalCard dataNutriment={user?.keyData.proteinCount} typeOfNutriment="Protéines" image={proteins} unit="g"/>
                         <StaticalCard dataNutriment={user?.keyData.carbohydrateCount} typeOfNutriment="Glucides" image={carbs} unit="g"/>
@@ -51,7 +61,7 @@ function Home() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
