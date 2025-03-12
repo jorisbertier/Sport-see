@@ -45,7 +45,7 @@ function Home() {
                 <Banner name={user?.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart">
-                        <Barchart />
+                        <Barchart id={id} />
                         <div className="home__chart__container">
                             <Areachart />
                             <Radarchart />

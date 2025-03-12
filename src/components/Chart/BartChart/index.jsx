@@ -14,7 +14,10 @@ export default class Barchart extends PureComponent {
   
 
   componentDidMount() {
-    getUserActivity(12)
+    const { id } = this.props;
+
+    console.log('id reucp' , id)
+    getUserActivity(id)
       .then((data) => {
         console.log('Données API reçues :', data);
   
