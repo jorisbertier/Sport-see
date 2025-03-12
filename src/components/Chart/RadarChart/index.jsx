@@ -3,17 +3,16 @@ import { PolarGrid, PolarAngleAxis, ResponsiveContainer, Radar, Legend, RadarCha
 import { useState, useEffect } from 'react';
 import { getUserPerformance } from '../../../services/api';
 
-  function Radarchart() {
+function Radarchart() {
 
     const [userPerformanceData, setUserPerformanceData] = useState(null);
-
+    console.log('user', userPerformanceData)
     useEffect(() => {
 
         const fetchData = async () => {
             try {
-                const response = await getUserPerformance(12);
+                const response = await getUserPerformance(18);
 
-                console.log(response)
                 if (response.data) {
                     const transformedData = response.data.data.map(item => ({
                         subject: response.data.kind[item.kind],
@@ -32,7 +31,6 @@ import { getUserPerformance } from '../../../services/api';
         fetchData()
 
     }, [])
-    console.log(userPerformanceData)
 
     const formatLabel = (value) => {
         if(value=== 'intensity') return 'Intensité'

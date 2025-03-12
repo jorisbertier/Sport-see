@@ -14,10 +14,16 @@ export default class Barchart extends PureComponent {
   
 
   componentDidMount() {
-    getUserActivity(12) // Pass userId
+    getUserActivity(12)
       .then((data) => {
         console.log('Données API reçues :', data);
-        this.setState({ sessions: data.data.sessions });
+  
+        const transformedSessions = data.data.sessions.map(session => ({
+          ...session,
+          day: parseInt(session.day.split('-')[2], 10),
+        }));
+  
+        this.setState({ sessions: transformedSessions });
       })
       .catch((err) => {
         console.log('Error getting activity data', err);
@@ -30,7 +36,7 @@ export default class Barchart extends PureComponent {
 
     const { sessions } = this.state
 
-        const CustomTooltip = ({ active, payload, label }) => {
+        const CustomTooltip = ({ active, payload }) => {
           if (active && payload && payload.length) {
             return (
               <div className="custom-tooltip" style={{background : 'red', width: '60px', height: '100px', display: 'flex',gap: '20px',
@@ -46,15 +52,10 @@ export default class Barchart extends PureComponent {
           return null;
         };
 
-        const maxWeight = Math.max(...sessions.map(session => session.kilogram));
-        const minWeight = Math.min(...sessions.map(session => session.kilogram));
-        console.log(minWeight)
-        console.log(maxWeight)
-        const yAxisDomain = [minWeight - 2, maxWeight + 2];
+        // const maxWeight = Math.max(...sessions.map(session => session.kilogram));
+        // const minWeight = Math.min(...sessions.map(session => session.kilogram));
+        // const yAxisDomain = [minWeight - 2, maxWeight + 2];
 
-        const tickFormatter = (tick) => {
-          return (parseInt(tick, 10) + 1).toString();
-        };
 
         const CustomTick = (props) => {
           const { x, y, payload } = props;
@@ -107,23 +108,27 @@ export default class Barchart extends PureComponent {
               horizontal={true}
               vertical={false}
             />
-            <XAxis tickFormatter={tickFormatter} tickLine={false} tick={CustomTick}/>
+            <XAxis 
+              dataKey="day"
+              tickLine={false} 
+              tick={CustomTick} 
+            />
             <YAxis
-            orientation="right"
-            tick={CustomTick}
-            tickLine={false}
-            axisLine={false}
-            // domain={yAxisDomain}
-            // domain={[minWeight - 2, maxWeight]}
-            // domain={['dataMin-2', 'dataMax+1']}
-            // domain={['dataMin-2', 'dataMax+1']}
-            allowDataOverflow={true}
-            tickCount={4}
-            tickMargin={50}
+              orientation="right"
+              tick={CustomTick}
+              tickLine={false}
+              axisLine={false}
+              // domain={yAxisDomain}
+              // domain={[minWeight - 2, maxWeight]}
+              // domain={['dataMin-2', 'dataMax+1']}
+              // domain={['dataMin-2', 'dataMax+1']}
+              allowDataOverflow={true}
+              tickCount={4}
+              tickMargin={50}
             />
             <Tooltip
-            content={<CustomTooltip />}
-            cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
+              content={<CustomTooltip />}
+              cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
             />
             {/* <Legend /> */}
             <Bar barSize={10} radius={[10, 10, 0, 0]} dataKey="kilogram" fill="#282D30" activeBar={<Rectangle fill="#282D30" stroke="#282D30" />} />

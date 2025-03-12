@@ -33,7 +33,6 @@ function Areachart() {
         return (
             <div>
                 <div className='recharts-text'>Durée moyenne des<br></br> sessions</div>
-                {/* <div className='test'>Durée moyenne dessessions</div> */}
                 
                 <div className='recharts-legend-item-day'>
                     <div>L</div>
@@ -61,18 +60,18 @@ function Areachart() {
         const { x, y } = points[0];
         // const { x1, y1 } = points[1];
         return (
-          <Rectangle
-            fill="#E60000"
-            stroke="#E60000"
-            x={x}
-            y={y - 100}
-            width={350}
-            height={310}
-            opacity={0.6}
-            borderRadius={30}
-          />
-        );
-      };
+            <Rectangle
+                fill="#E60000"
+                stroke="#E60000"
+                x={x}
+                y={y - 100}
+                width={350}
+                height={310}
+                opacity={0.6}
+                borderRadius={30}
+            />
+            );
+        };
 
     const CustomTooltip = ({ active, payload }) => {
 
@@ -87,13 +86,6 @@ function Areachart() {
     return null;
     };
 
-    // const renderDot = (props) => {
-    //     const { cx, cy, stroke, value } = props;
-    //     console.log(props)
-    //     return (
-    //         <circle cx={cx -10} cy={cy -30} r={3} stroke={stroke} strokeWidth={2} fill="red" style={{top : '-200px'}}/>
-    //     );
-    // };
     return (
         <ResponsiveContainer width={320} height="100%" minHeight="200px" minWidth="200px">  
             <AreaChart
@@ -120,9 +112,9 @@ function Areachart() {
                 <div className='recharts-legend-item-text'>Durée moyenne des<br></br> sessions</div>
                 <Legend height={80} content={CustomLegend}/>
                 <Tooltip
-                offset={0}
-                cursor={<CustomCursor />}
-                content={<CustomTooltip />}
+                    offset={0}
+                    cursor={<CustomCursor />}
+                    content={<CustomTooltip />}
                 />
                 <Area
                     type="monotone"
@@ -134,7 +126,7 @@ function Areachart() {
                     dot={false}
                 />
             </AreaChart>
-           </ResponsiveContainer>
+        </ResponsiveContainer>
     );
 }
 

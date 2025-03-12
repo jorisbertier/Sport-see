@@ -16,7 +16,7 @@ function Home() {
     let [user, setUser] = useState(null)
 
     useEffect(() => {
-        fetch("http://localhost:3000/user/12")
+        fetch("http://localhost:3000/user/18")
         .then(response => response.json())
         .then(({data: { id, key, keyData, todayScore, userInfos}}) => {
             // console.log(data);
