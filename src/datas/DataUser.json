@@ -11,7 +11,7 @@
         "lipidCount": 90,
         "proteinCount": 2500
     },
-    "todayScore": 0.12,
+    "todayScore": 0.3,
     "performance": [
         { "subject": "intensity", "A": 110 },
         { "subject": "speed", "A": 220 },
