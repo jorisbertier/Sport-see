@@ -49,9 +49,9 @@ console.log('DATAAAA', Data)
                     <div className="home__chart">
                         <Barchart id={id} />
                         <div className="home__chart__container">
-                            <Areachart />
-                            <Radarchart />
-                            <Piechart />
+                            <Areachart id={id}/>
+                            <Radarchart id={id}/>
+                            <Piechart id={id} />
                         </div>
                     </div>
                     <div className="home__statistics">

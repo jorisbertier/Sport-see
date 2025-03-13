@@ -3,14 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, Tooltip, Rectangle, Legend, ResponsiveContainer } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
-function Areachart() {
+function Areachart({id}) {
     const [sessionData, setSessionData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getUserAverageSessions(12);
+                const response = await getUserAverageSessions(id);
                 if (response && response.data && response.data.sessions) {
                     setSessionData(response);
                 } else {

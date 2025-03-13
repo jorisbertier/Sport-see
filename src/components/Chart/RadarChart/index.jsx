@@ -3,7 +3,7 @@ import { PolarGrid, PolarAngleAxis, ResponsiveContainer, Radar, Legend, RadarCha
 import { useState, useEffect } from 'react';
 import { getUserPerformance } from '../../../services/api';
 
-function Radarchart() {
+function Radarchart({id}) {
 
     const [userPerformanceData, setUserPerformanceData] = useState(null);
     console.log(userPerformanceData)
@@ -11,7 +11,7 @@ function Radarchart() {
 
         const fetchData = async () => {
             try {
-                const response = await getUserPerformance(18);
+                const response = await getUserPerformance(id);
 
                 if (response.data) {
                     const transformedData = response.data.data.map(item => ({

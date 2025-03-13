@@ -2,14 +2,14 @@ import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from 'react';
 import { getUserScore } from '../../../services/api';
 
-function Piechart() {
-
+function Piechart({id}) {
+  
     const [userScoreData, setUserScoreData] = useState(null)
 
     useEffect(()=> {
       const fecthData = async () => {
         try {
-          const data = await getUserScore(12)
+          const data = await getUserScore(id)
           setUserScoreData(data)
         } catch(err) {
           console.log('Error getting user score data', err)
