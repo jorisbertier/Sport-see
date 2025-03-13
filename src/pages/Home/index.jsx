@@ -18,7 +18,8 @@ function Home() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-console.log('DATAAAA', Data)
+
+    const idMock = Data.id
 
     useEffect(() => {
         fetch(`http://localhost:3000/user/${id}`)
