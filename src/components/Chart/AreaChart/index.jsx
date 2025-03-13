@@ -3,30 +3,42 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, Tooltip, Rectangle, Legend, ResponsiveContainer } from 'recharts';
 import { getUserAverageSessions } from '../../../services/api';
 
-function Areachart({id}) {
+function Areachart({id, mock, dataMock}) {
     const [sessionData, setSessionData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getUserAverageSessions(id);
-                if (response && response.data && response.data.sessions) {
-                    setSessionData(response);
-                } else {
-                    throw new Error('Invalid data structure');
+        if(mock) {
+            // const formattedData = {
+            //     data: {
+            //         userId: originalData.id, // Récupère l'ID
+            //         sessions: originalData.data.sessions // Récupère les sessions dans "data"
+            //     }
+            // };
+            setSessionData(dataMock);
+            setLoading(false);
+        }   
+        else {
+            const fetchData = async () => {
+                try {
+                    const response = await getUserAverageSessions(id);
+                    if (response && response.data && response.data.sessions) {
+                        setSessionData(response);
+                    } else {
+                        throw new Error('Invalid data structure');
+                    }
+                } catch (err) {
+                    console.log('Error getting data user average sessions', err);
+                } finally {
+                    setLoading(false);
                 }
-            } catch (err) {
-                console.log('Error getting data user average sessions', err);
-            } finally {
-                setLoading(false);
-            }
-        };
+            };
 
-        fetchData();
-    }, []);
+            fetchData();
+        }
+    }, [id, mock]);
 
-    console.log('sessisondate', sessionData)
+    console.log('SESSIONDATA', sessionData)
 
     const CustomLegend = (props) => {
         // const { payload } = props;
@@ -93,7 +105,7 @@ function Areachart({id}) {
             <AreaChart
                 width={300}
                 height={300}
-                data={sessionData.data.sessions}
+                data={sessionData.data.sessions || sessionData}
                 // margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
                 margin={{ top: 100, right: -20, left: -20, bottom: -10 }}
                 padding={{left: 0}}
