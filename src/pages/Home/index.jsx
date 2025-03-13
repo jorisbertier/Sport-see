@@ -19,19 +19,40 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    const idMock = Data.id
+    const [userId, setUserId] = useState()
+
+    const useMock = true;
+   
+    
 
     useEffect(() => {
-        fetch(`http://localhost:3000/user/${id}`)
-        .then(response => response.json())
-        .then(({data: { id, key, keyData, todayScore, userInfos }}) => {
-            setUser({ id, key, keyData, todayScore, userInfos });
-            setLoading(false); 
-        })
-        .catch(() => (
-            navigate("/error")
-        ));
-    }, [id, navigate]);
+        if (useMock) {
+            console.log('Contenu de Data :', Data); // Vérifier le contenu
+
+            if (Data) {
+                setUser(Data);
+                setUserId(Data.id);
+                setLoading(false);
+            } else {
+                navigate("/error");
+            }
+        } 
+        else {
+            fetch(`http://localhost:3000/user/${id}`)
+            .then(response => response.json())
+            .then(({data: { id, key, keyData, todayScore, userInfos }}) => {
+                setUser({ id, key, keyData, todayScore, userInfos });
+                setUserId(id)
+                setLoading(false); 
+            })
+            .catch(() => (
+                navigate("/error")
+            ));
+        }
+    }, [id, navigate, useMock]);
+
+
+    console.log('data')
 
     if(loading) {
         return (
@@ -45,14 +66,14 @@ function Home() {
         <div className="home">
             <Asidebar />
             <div className="home__wrapper">
-                <Banner name={user?.userInfos.firstName} />
+                <Banner name={user?.userInfos.firstName || Data.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart">
-                        <Barchart id={id} />
+                        <Barchart id={userId} />
                         <div className="home__chart__container">
-                            <Areachart id={id}/>
-                            <Radarchart id={id}/>
-                            <Piechart id={id} />
+                            <Areachart id={userId}/>
+                            <Radarchart id={userId}/>
+                            <Piechart id={userId} />
                         </div>
                     </div>
                     <div className="home__statistics">
