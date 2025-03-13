@@ -3,33 +3,37 @@ import { PolarGrid, PolarAngleAxis, ResponsiveContainer, Radar, Legend, RadarCha
 import { useState, useEffect } from 'react';
 import { getUserPerformance } from '../../../services/api';
 
-function Radarchart({id}) {
+function Radarchart({id, mock, dataMock}) {
 
     const [userPerformanceData, setUserPerformanceData] = useState(null);
-    console.log(userPerformanceData)
+    console.log('userperf',userPerformanceData)
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const response = await getUserPerformance(id);
+        
+        if(mock) {
+            setUserPerformanceData(dataMock)
+        }else {
+            const fetchData = async () => {
+                try {
+                    const response = await getUserPerformance(id);
 
-                if (response.data) {
-                    const transformedData = response.data.data.map(item => ({
-                        subject: response.data.kind[item.kind],
-                        A: item.value,
-                    }));
-                    transformedData.reverse();
-                    setUserPerformanceData(transformedData);
-                } else {
-                    console.error('Unexpected response structure:', response);
+                    if (response.data) {
+                        const transformedData = response.data.data.map(item => ({
+                            subject: response.data.kind[item.kind],
+                            A: item.value,
+                        }));
+                        transformedData.reverse();
+                        setUserPerformanceData(transformedData);
+                    } else {
+                        console.error('Unexpected response structure:', response);
+                    }
+                }
+                catch(err) {
+                    console.log('Error getting data user performance', err)
                 }
             }
-            catch(err) {
-                console.log('Error getting data user performance', err)
-            }
+            fetchData()
         }
-        fetchData()
-
     }, [])
 
     const formatLabel = (value) => {

@@ -68,7 +68,7 @@ function Home() {
                         <Barchart id={userId} mock={useMock} dataMock={Data.sessions}/>
                         <div className="home__chart__container">
                             <Areachart id={userId} mock={useMock} dataMock={Data}/>
-                            <Radarchart id={userId}/>
+                            <Radarchart id={userId} mock={useMock} dataMock={Data.additionalData}/>
                             <Piechart id={userId} />
                         </div>
                     </div>

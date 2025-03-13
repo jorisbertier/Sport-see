@@ -32,9 +32,10 @@
     "additionalData": [
         { "subject": "intensity", "A": 110 },
         { "subject": "speed", "A": 220 },
-        { "subject": "calories", "A": 240 },
+        { "subject": "strength", "A": 80 },
         { "subject": "endurance", "A":80 },
-        { "subject": "agility", "A": 150 }
+        { "subject": "energy", "A": 240 },
+        { "subject": "cardio", "A": 200 }
     ],
     "data": {
         "userId": 18,
