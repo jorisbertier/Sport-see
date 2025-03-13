@@ -10,7 +10,6 @@ function Piechart() {
       const fecthData = async () => {
         try {
           const data = await getUserScore(12)
-          console.log(data)
           setUserScoreData(data)
         } catch(err) {
           console.log('Error getting user score data', err)
@@ -19,7 +18,6 @@ function Piechart() {
       fecthData()
     }, [])
 
-  
     if (!userScoreData) {
       return <p>Loading...</p> 
     }

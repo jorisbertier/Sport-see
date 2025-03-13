@@ -6,7 +6,7 @@ import { getUserPerformance } from '../../../services/api';
 function Radarchart() {
 
     const [userPerformanceData, setUserPerformanceData] = useState(null);
-    console.log('user', userPerformanceData)
+    console.log(userPerformanceData)
     useEffect(() => {
 
         const fetchData = async () => {

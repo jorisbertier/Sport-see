@@ -1,0 +1,39 @@
+{
+    "id": 18,
+    "userInfos": {
+        "age": 34,
+        "firstName": "Cecilia",
+        "lastName": "Ratorez"
+    },
+    "keyData": {
+        "calorieCount": 2500,
+        "carbohydrateCount": 1500,
+        "lipidCount": 90,
+        "proteinCount": 2500
+    },
+    "todayScore": 0.12,
+    "performance": [
+        { "subject": "intensity", "A": 110 },
+        { "subject": "speed", "A": 220 },
+        { "subject": "strength", "A": 80 },
+        { "subject": "endurance", "A": 80 },
+        { "subject": "energy", "A": 240 },
+        { "subject": "cardio", "A": 200 }
+    ],
+    "sessions": [
+        { "day": 1, "kilogram": 70, "calories": 240 },
+        { "day": 2, "kilogram": 69, "calories": 220 },
+        { "day": 3, "kilogram": 70, "calories": 280 },
+        { "day": 4, "kilogram": 70, "calories": 500 },
+        { "day": 5, "kilogram": 69, "calories": 160 },
+        { "day": 6, "kilogram": 69, "calories": 162 },
+        { "day": 7, "kilogram": 69, "calories": 390 }
+    ],
+    "additionalData": [
+        { "subject": "intensity", "A": 110 },
+        { "subject": "speed", "A": 220 },
+        { "subject": "calories", "A": 240 },
+        { "subject": "endurance", "A":80 },
+        { "subject": "agility", "A": 150 }
+    ]
+}

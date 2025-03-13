@@ -26,9 +26,11 @@ function Areachart() {
         fetchData();
     }, []);
 
+    console.log('sessisondate', sessionData)
+
     const CustomLegend = (props) => {
-        const { payload } = props;
-        console.log(payload)
+        // const { payload } = props;
+        // console.log(payload)
     
         return (
             <div>

@@ -34,7 +34,6 @@ export const getUserPerformance = async (userId) => {
             throw new Error('Error getting user performance data');
         }
         const data = response.json();
-        console.log(data);
         return data;
     }
     catch(err) {

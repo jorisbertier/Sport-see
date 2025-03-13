@@ -11,12 +11,14 @@ import Barchart from "../../components/Chart/BartChart";
 import Areachart from "../../components/Chart/AreaChart";
 import Radarchart from "../../components/Chart/RadarChart";
 import Piechart from "../../components/Chart/PieChart";
+import Data from '../../../src/datas/DataUser.json'
 
 function Home() {
     const { id } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+console.log('DATAAAA', Data)
 
     useEffect(() => {
         fetch(`http://localhost:3000/user/${id}`)
