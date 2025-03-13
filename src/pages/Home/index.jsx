@@ -22,12 +22,10 @@ function Home() {
     const [userId, setUserId] = useState()
 
     const useMock = true;
-   
-    
 
     useEffect(() => {
         if (useMock) {
-            console.log('Contenu de Data :', Data); // Vérifier le contenu
+            console.log('Contenu de Data :', Data);
 
             if (Data) {
                 setUser(Data);
@@ -52,8 +50,6 @@ function Home() {
     }, [id, navigate, useMock]);
 
 
-    console.log('data')
-
     if(loading) {
         return (
         <div className="loading">
@@ -69,7 +65,7 @@ function Home() {
                 <Banner name={user?.userInfos.firstName || Data.userInfos.firstName} />
                 <div className="home__wrapper--statistics">
                     <div className="home__chart">
-                        <Barchart id={userId} />
+                        <Barchart id={userId} mock={useMock} dataMock={Data.sessions}/>
                         <div className="home__chart__container">
                             <Areachart id={userId}/>
                             <Radarchart id={userId}/>

@@ -15,28 +15,38 @@ export default class Barchart extends PureComponent {
 
   componentDidMount() {
     const { id } = this.props;
+    const { mock } = this.props;
+    const { dataMock } = this.props;
 
-    getUserActivity(id)
-      .then((data) => {
-        console.log('Données API reçues :', data);
-  
-        const transformedSessions = data.data.sessions.map(session => ({
-          ...session,
-          day: parseInt(session.day.split('-')[2], 10),
-        }));
-  
-        this.setState({ sessions: transformedSessions });
-      })
-      .catch((err) => {
-        console.log('Error getting activity data', err);
-      });
-  }
 
-  
+    if(mock) {
+      
+      this.setState({ sessions: dataMock });
 
-  render() {
+    }else {
+      getUserActivity(id)
+        .then((data) => {
+          console.log('Données API reçues :', data);
+    
+          const transformedSessions = data.data.sessions.map(session => ({
+            ...session,
+            day: parseInt(session.day.split('-')[2], 10),
+          }));
+    
+          this.setState({ sessions: transformedSessions });
+        })
+        .catch((err) => {
+          console.log('Error getting activity data', err);
+        });
+    }
+    }
 
-    const { sessions } = this.state
+    
+    
+    
+    render() {
+      
+      const { sessions } = this.state
 
         const CustomTooltip = ({ active, payload }) => {
           if (active && payload && payload.length) {
@@ -76,7 +86,7 @@ export default class Barchart extends PureComponent {
             </text>
           );
         };
-        
+
     return (
       <div className='activity'>
         <div className='activity-wrapper'>
